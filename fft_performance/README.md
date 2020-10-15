@@ -4,4 +4,4 @@
 * `performance.py` compares the performance of Numpy, PyFFTW, and cuFFT
 
 ## Link to post
-https://jparker.me/blog/fft_2d_performance/
+https://www.jparker.me/blog/fft_2d_performance

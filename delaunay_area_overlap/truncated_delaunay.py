@@ -11,14 +11,14 @@ import h5py
 mpl.rc('font', size=15)
 nm = 1e-9
 
-def t_delaunay_plot(points, color, ax):
+def t_delaunay_plot(points, thresh, color, ax):
     D1 = Delaunay(points)
     mask = np.zeros(len(D1.simplices), dtype=bool)
     mask[...] = False
     for i in range(len(mask)):
         p = points[D1.simplices[i]]
         D = distance_matrix(p, p)
-        if (D > 1800*nm).any():
+        if (D > thresh).any():
             mask[i] = True
         else: 
             patch = mpl.patches.Polygon(p, color=color, alpha=.2)
