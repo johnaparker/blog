@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from fft import gpu_fft
 import pyfftw
+import matplotlib as mpl
+mpl.rc('font', size=20)
 
 def time_function(func, runtime=.1):
     """Time a function by running it repeatedly for at least 'runtime' seconds"""
@@ -49,19 +51,17 @@ numpy_time = np.array(numpy_time)
 cuda_time = np.array(cuda_time)
 pyfftw_time = np.array(pyfftw_time)
 
-fig, axes = plt.subplots(ncols=2, figsize=plt.figaspect(1/2))
+fig, axes = plt.subplots(figsize=(6,6))
 
-axes[0].loglog(nvals, numpy_time, 'o-', label='NumPy', basex=2)
-axes[0].loglog(nvals, cuda_time, 'o-',  label='CUDA', basex=2)
-axes[0].loglog(nvals, pyfftw_time, 'o-',  label='PyFFTW', basex=2)
-axes[0].grid(ls='--', color='gray')
-axes[0].set(xlabel='image size', ylabel='runtime (ms)')
-axes[0].legend()
+axes.loglog(nvals, numpy_time, 'o-', label='NumPy', basex=2, lw=4, ms=10)
+axes.loglog(nvals, cuda_time, 'o-',  label='CUDA', basex=2, lw=4, ms=10)
+axes.loglog(nvals, pyfftw_time, 'o-',  label='PyFFTW', basex=2, lw=4, ms=10)
+axes.grid(ls='--', color='gray')
+axes.set_xlabel('image size', labelpad=20)
+axes.set_ylabel('runtime', labelpad=20)
+axes.tick_params(left=False, bottom=False, labelbottom=False, labelleft=False)
 
-axes[1].semilogx(nvals, numpy_time/cuda_time, 'o-', basex=2, label='vs. NumPy', color='red')
-axes[1].semilogx(nvals, pyfftw_time/cuda_time, 'o-', basex=2, label='vs. PyFFTW', color='k')
-axes[1].legend()
-axes[1].set(xlabel='image size', ylabel='CUDA speedup')
-axes[1].grid(ls='--', color='gray')
+plt.tight_layout()
+plt.savefig('out.svg')
 
 plt.show()

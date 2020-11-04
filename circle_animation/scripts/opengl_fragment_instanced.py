@@ -42,9 +42,13 @@ def animate_2d(position, radius, colors, xlim=None, ylim=None, background_color=
                          fshader=fshader,
                          time_it=time_it)
 
-with h5py.File('../data/medium.h5', 'r') as f:
+with h5py.File('../data/small.h5', 'r') as f:
     traj = f['traj'][...]
     radii = f['radii'][...]
+
+# N = 10
+# traj = np.concatenate([traj + [0,5*i] for i in range(N)], axis=1)
+# radii = np.concatenate([radii]*N, axis=0)
 
 colors = mpl.colors.TABLEAU_COLORS
 animate_2d(traj, radii, colors, background_color='white', time_it=True)

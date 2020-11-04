@@ -36,7 +36,7 @@ def animate_matplotlib(traj, radii, colors=None, ax=None):
 
         if frame > 0:
             dt_log.append(time() - T)
-            print(np.average(dt_log))
+            print(f"{np.average(dt_log)*1e3:.2f} ms")
         T = time()
 
         return collection,
@@ -65,7 +65,7 @@ def animate_matplotlib(traj, radii, colors=None, ax=None):
     return anim
 
 if __name__ == "__main__":
-    with h5py.File('../data/large.h5', 'r') as f:
+    with h5py.File('../data/small.h5', 'r') as f:
         traj = f['traj'][...]
         radii = f['radii'][...]
 

@@ -50,6 +50,7 @@ endif(WIN32)
 
 # add GLAD to LIBS
 add_library(GLAD "cpp/third_party/glad/glad.c")
+set_property(TARGET GLAD PROPERTY POSITION_INDEPENDENT_CODE ON)
 set(LIBS ${LIBS} GLAD)
 
 # include directories
