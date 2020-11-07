@@ -51,4 +51,4 @@ with h5py.File('../data/small.h5', 'r') as f:
 # radii = np.concatenate([radii]*N, axis=0)
 
 colors = mpl.colors.TABLEAU_COLORS
-animate_2d(traj, radii, colors, background_color='white', time_it=True)
+animate_2d(traj, radii, colors, background_color='k', time_it=False)

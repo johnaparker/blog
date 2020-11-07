@@ -39,7 +39,6 @@ def animate_matplotlib(traj, radii, colors=None, ax=None):
             print(f"{np.average(dt_log)*1e3:.2f} ms")
         T = time()
 
-        return collection,
 
     circles = []
     for i,pos in enumerate(traj[0]):

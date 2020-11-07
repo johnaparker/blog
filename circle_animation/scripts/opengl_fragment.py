@@ -42,7 +42,7 @@ def animate_2d(position, radius, colors, xlim=None, ylim=None, background_color=
                          fshader=fshader,
                          time_it=time_it)
 
-with h5py.File('../data/small.h5', 'r') as f:
+with h5py.File('../data/large.h5', 'r') as f:
     traj = f['traj'][...]
     radii = f['radii'][...]
 
